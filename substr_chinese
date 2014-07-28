@@ -13,6 +13,11 @@
 	$brief = ""; //截取結果
 	$pos = 0; //中文字關係所以透過mb_substr 逐字截取
 	
+	//如預取之字串byte沒那麼多時
+	if(strlen($content) < $words){
+		$words = strlen($content);
+	}
+	
 	while($select_words < $words){
 		$char = mb_substr($content,$pos,1,"UTF-8"); //中文字在 BIG5 編碼是 2 byte，在 UTF-8 要 3 byte
 		
