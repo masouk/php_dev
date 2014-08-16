@@ -44,8 +44,4 @@
 	curl_close($ch);
 	exec('libreoffice ./test.xls', $out, $status);
 
-
-
-
-
 ?>
