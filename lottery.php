@@ -1,12 +1,11 @@
 <?php
 
-	include_once("config.php");
-
-	if(isset($_GET['reload'])) sleep(1);
-	$oLottery = new Lottery();
-
-	// echo 8/35 "2334樂透彩開獎號碼信息僅供參考,具體請參照官方公告";
-
+	/*
+	 * 威力彩 38樂合彩 => 星期一 星期四
+	 * 大樂透 49樂合彩 => 星期二 星期五
+	 * 今彩539 39樂合彩 三星彩 四星彩 =>星期一到星期六
+	 */
+	 
 	$url = "http://www.taiwanlottery.com.tw/";
 
 	$ch = curl_init();
@@ -66,65 +65,5 @@
 			if($key >=  3 && $key <= 6)
 				$purple2[] = trim($val);
 	}
-	/*
-	 * 威力彩 38樂合彩 => 星期一 星期四
-	 * 大樂透 49樂合彩 => 星期二 星期五
-	 * 今彩539 39樂合彩 三星彩 四星彩 =>星期一到星期六
-	 */
-	$award = array('威力彩','38樂合彩','大樂透','49樂合彩','今彩539','39樂合彩','三星彩','四星彩');
-
-	$countHasRecord = 0;
-	foreach($award as $key=>$val){
-
-		$oLottery->type = $val;
-		$oLottery->open_date = $award_date[$key];
-		$oLottery->open_code = $award_name[$key];
-		switch($val){
-			case "威力彩":
-				$oLottery->result = implode(",",$green);
-				$oLottery->special = $green_s;
-			break;
-			case "38樂合彩":
-				$oLottery->result = implode(",",$green);
-			break;
-			case "大樂透":
-				$oLottery->result = implode(",",$yellow);
-				$oLottery->special = $yellow_s;
-			break;
-			case "49樂合彩":
-				$oLottery->result = implode(",",$yellow);
-				$oLottery->special = "";
-			break;
-			case "今彩539":
-				$oLottery->result = implode(",",$lemon);
-			break;
-			case "39樂合彩":
-				$oLottery->result = implode(",",$lemon);
-			break;
-			case "三星彩":
-				$oLottery->result = implode(",",$purple1);
-			break;
-			case "四星彩":
-				$oLottery->result = implode(",",$purple2);
-			break;
-		}
-
-			if(! ($oLottery->isRecordByAward())){ 
-				$oLottery->update();
-				$countHasRecord++;
-			}
-				$oLottery->setVarsEmpty();
-
-	}
-
-
-		if($countHasRecord > 0){
-			echo 1;
-		}else{
-			echo 0;
-		}
-
-
-
-
+	
 ?>
