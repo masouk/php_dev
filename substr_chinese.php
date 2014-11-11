@@ -1,5 +1,6 @@
 <?php
 	/*
+	 * chinese char substring
 	 * 中文字與英文字夾雜時，需取之簡稱
 	 * 
 	 */
