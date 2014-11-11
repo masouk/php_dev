@@ -1,6 +1,7 @@
 <?php
 
 	/*
+	 * Taiwan Lottery website is fetched reward number by php code
 	 * 威力彩 38樂合彩 => 星期一 星期四
 	 * 大樂透 49樂合彩 => 星期二 星期五
 	 * 今彩539 39樂合彩 三星彩 四星彩 =>星期一到星期六
