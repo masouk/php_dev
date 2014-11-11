@@ -2,6 +2,7 @@
 	
   /*
    *透過CURL進行遠端登入
+   * remote login throgh CURL 
    */
 
 
