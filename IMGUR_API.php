@@ -22,10 +22,10 @@
 	curl_setopt($ch, CURLOPT_POSTFIELDS, array('image' => base64_encode($image),'name'=>'taiwan','title'=>'taiwan'));
 
 	$reply = curl_exec($ch);
-	if(curl_errno($ch))
-{
-    echo 'Curl error: ' . curl_error($ch);
-}
+	
+	if(curl_errno($ch)){
+    		echo 'Curl error: ' . curl_error($ch);
+	}
 
 	curl_close($ch);
 	echo $reply;
