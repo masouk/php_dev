@@ -1,4 +1,6 @@
 <?php
+
+//reference http://www.cnblogs.com/phpdragon/archive/2012/06/10/2544171.html
 class Service {
 
     public function HelloWorld() {
