@@ -44,5 +44,10 @@
 	
 	curl_close($ch);
 	exec('libreoffice ./test.xls', $out, $status);
+	fclose($fp_output);
+	
+	//移動檔案到
+	rename($path.$filename.'.xls','\\\\192.168.0.210\Conductor\S_DSBIN\excel\\'.$distDir.'\\'.$filename.'.xls');
+	
 
 ?>
