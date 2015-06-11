@@ -1,21 +1,26 @@
-if($this->input->post('dev_type') == 'android'){
-      $this->load->library('gcm');
-      $apiKey = 'AIzaSyCGoF7d8RICciu1qABynFzh1D5O_Mhlm1o';
-      $devices = array($row->dev_push_token);
-      $message = $this->input->post('dev_msg') ? $this->input->post('dev_msg'):'The message to send';
+<?php 
 
-      $this->gcm->gcm($apiKey);
-      $this->gcm->setDevices($devices);
-      $response = $this->gcm->send($message, array('title' => 'Test title'));
+$device_type = '裝置類型'
+$mobile_token = '手機裝置推播token';
+
+if($device_type == 'android'){
+      $gcm = new Gcm();
+      $apiKey = 'sign api key'; //向google申請的api key
+      $devices = array($mobile_token); //手機裝置token
+      $message = 'Your define message'
+
+      $gcm->gcm($apiKey);
+      $gcm->setDevices($devices);
+      $response = $gcm->send($message, array('title' => 'Test title'));
       print_r($response);
 
 }else{
       //$apnsHost = 'gateway.push.apple.com';
       $apnsHost = 'gateway.sandbox.push.apple.com';
-      $apnsCert = APPPATH.'../uploads/private_key/apns_dev.pem';
+      $apnsCert = 'apns_dev.pem'; //apple 申請之憑證
       $apnsPort = 2195;
 
-      $deviceToken = $row->dev_push_token;
+      $deviceToken = $mobile_token;
 
       $streamContext = stream_context_create();
       stream_context_set_option($streamContext, 'ssl', 'local_cert', $apnsCert);
@@ -128,3 +133,4 @@ class Gcm {
         exit(1);
     }
 }
+?>
