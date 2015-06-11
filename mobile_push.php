@@ -5,7 +5,7 @@ $mobile_token = '手機裝置推播token';
 
 if($device_type == 'android'){
       $gcm = new Gcm();
-      $apiKey = 'sign api key'; //向google申請的api key
+      $apiKey = 'apply api key'; //向google申請的api key
       $devices = array($mobile_token); //手機裝置token
       $message = 'Your define message'
 
