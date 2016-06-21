@@ -1,5 +1,5 @@
 <?php
-test2
+test23456
 	/*
 	 * Taiwan Lottery website is fetched reward number by php code
 	 * 威力彩 38樂合彩 => 星期一 星期四
