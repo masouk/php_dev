@@ -1,0 +1,23 @@
+//mysql add function remove html tag
+CREATE FUNCTION `strip_tags`($str text) RETURNS text
+BEGIN
+    DECLARE $start, $end, $br_start, $br_end INT DEFAULT 1;
+    LOOP
+    
+    	SET $br_start = LOCATE("<br", $str, $br_start);
+    
+    	IF (!$br_start) THEN
+        	SET $start = LOCATE("<", $str, $start);
+        	IF (!$start) THEN RETURN $str; END IF;
+        	SET $end = LOCATE(">", $str, $start);
+        	IF (!$end) THEN SET $end = $start; END IF;
+        	SET $str = INSERT($str, $start, $end - $start + 1, "");
+        ELSE
+        	SET $br_end = LOCATE(">", $str, $br_start);
+        	IF (!$br_end) THEN SET $br_end = $br_start; END IF;
+        	SET $str = INSERT($str, $br_start, $br_end - $br_start + 1, "
+");
+        END IF;
+    
+    END LOOP;
+END
